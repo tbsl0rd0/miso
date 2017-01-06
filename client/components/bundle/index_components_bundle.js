@@ -51,6 +51,7 @@
 
 	__webpack_require__(15);
 	__webpack_require__(17);
+	__webpack_require__(21);
 
 
 /***/ },
@@ -422,7 +423,7 @@
 /* 6 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=container><navbar></navbar><div class=row><span class=\"label blue\">미소</span> <span class=\"label purple\">미소</span></div><div class=row><settings></settings></div></div>"
+	module.exports = "<div class=container><navbar></navbar><div class=row><span class=\"label blue\">미소</span> <span class=\"label purple\">미소</span></div><div class=row><settings></settings></div><div class=row><button class=button>미소미소</button> <button class=\"button blue\">미소미소</button> <button class=\"button purple\">미소미소</button></div></div>"
 
 /***/ },
 /* 7 */
@@ -533,7 +534,7 @@
 
 
 	// module
-	exports.push([module.id, ".settings {\n  width: 40px;\n  height: 40px;\n}\n.settings > div:nth-of-type(1) {\n  width: 30px;\n  height: 30px;\n  cursor: pointer;\n  position: relative;\n  border-radius: 15px;\n  background-color: #32A8D9;\n  transition-duration: 0.5s;\n}\n.settings > div:nth-of-type(1):after {\n  opacity: 0;\n  right: 0px;\n  bottom: 5px;\n  content: '';\n  position: absolute;\n  transition-duration: 0.5s;\n  border-top-width: 10px;\n  border-top-style: solid;\n  border-top-color: transparent;\n  border-bottom-width: 10px;\n  border-bottom-style: solid;\n  border-bottom-color: transparent;\n  border-left-width: 12px;\n  border-left-style: solid;\n  border-left-color: #32A8D9;\n}\n.settings > div:nth-of-type(1) > i {\n  color: white;\n  position: absolute;\n  transition-duration: 0.5s;\n}\n.settings > div:nth-of-type(1) > i:nth-of-type(1) {\n  top: 7px;\n  left: 6px;\n}\n.settings > div:nth-of-type(1) > i:nth-of-type(2) {\n  top: 7px;\n  left: 7px;\n  opacity: 0;\n}\n.settings > div:nth-of-type(2) {\n  opacity: 0;\n  width: 300px;\n  height: 300px;\n  position: absolute;\n  visibility: hidden;\n  border-width: 2px;\n  border-radius: 5px;\n  border-style: solid;\n  border-color: #32A8D9;\n  background-color: white;\n  transition-duration: 0.5s;\n}\n.settings.active > div:nth-of-type(1) {\n  transform: rotate(90deg);\n  background-color: #9A9C9D;\n}\n.settings.active > div:nth-of-type(1):after {\n  opacity: 1;\n  right: -7px;\n  border-left-color: #9A9C9D;\n}\n.settings.active > div:nth-of-type(1) > i:nth-of-type(1) {\n  opacity: 0;\n}\n.settings.active > div:nth-of-type(1) > i:nth-of-type(2) {\n  opacity: 1;\n}\n.settings.active > div:nth-of-type(2) {\n  opacity: 1;\n  margin-top: 10px;\n  margin-left: 5px;\n  visibility: visible;\n}\n", ""]);
+	exports.push([module.id, ".settings {\n  width: 40px;\n  height: 40px;\n}\n.settings > div:nth-of-type(1) {\n  width: 30px;\n  height: 30px;\n  cursor: pointer;\n  position: relative;\n  border-radius: 15px;\n  transition-duration: 0.5s;\n  background-color: #3996D4;\n}\n.settings > div:nth-of-type(1):after {\n  opacity: 0;\n  right: 0px;\n  bottom: 5px;\n  content: '';\n  position: absolute;\n  transition-duration: 0.5s;\n  border-top-width: 10px;\n  border-top-style: solid;\n  border-top-color: transparent;\n  border-bottom-width: 10px;\n  border-bottom-style: solid;\n  border-bottom-color: transparent;\n  border-left-width: 12px;\n  border-left-style: solid;\n  border-left-color: #3996D4;\n}\n.settings > div:nth-of-type(1) > i {\n  color: white;\n  position: absolute;\n  transition-duration: 0.5s;\n}\n.settings > div:nth-of-type(1) > i:nth-of-type(1) {\n  top: 7px;\n  left: 6px;\n}\n.settings > div:nth-of-type(1) > i:nth-of-type(2) {\n  top: 7px;\n  left: 7px;\n  opacity: 0;\n}\n.settings > div:nth-of-type(2) {\n  opacity: 0;\n  width: 300px;\n  height: 300px;\n  position: absolute;\n  visibility: hidden;\n  background-color: white;\n  transition-duration: 0.5s;\n  border-width: 2px;\n  border-radius: 5px;\n  border-style: solid;\n  border-color: #3996D4;\n}\n.settings.active > div:nth-of-type(1) {\n  transform: rotate(90deg);\n  background-color: #9A9C9D;\n}\n.settings.active > div:nth-of-type(1):after {\n  opacity: 1;\n  right: -7px;\n  border-left-color: #9A9C9D;\n}\n.settings.active > div:nth-of-type(1) > i:nth-of-type(1) {\n  opacity: 0;\n}\n.settings.active > div:nth-of-type(1) > i:nth-of-type(2) {\n  opacity: 1;\n}\n.settings.active > div:nth-of-type(2) {\n  opacity: 1;\n  margin-top: 10px;\n  margin-left: 5px;\n  visibility: visible;\n}\n", ""]);
 
 	// exports
 
@@ -619,7 +620,49 @@
 
 
 	// module
-	exports.push([module.id, ".label {\n  color: white;\n  padding: 2px 6px;\n  border-radius: 3px;\n  font-size: 10px;\n  font-family: JejuGothic;\n}\n.label.blue {\n  background-color: #2370DE;\n}\n.label.purple {\n  background-color: #843CAD;\n}\n", ""]);
+	exports.push([module.id, ".label {\n  color: white;\n  padding: 2px 6px;\n  border-radius: 3px;\n  font-size: 10px;\n  font-family: JejuGothic;\n}\n.label.blue {\n  background-color: #3996D4;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 19 */,
+/* 20 */,
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(22);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./button.less", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./button.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".button {\n  color: white;\n  height: 30px;\n  cursor: pointer;\n  font-size: 14px;\n  padding-right: 13px;\n  padding-left: 13px;\n  border-width: 1px;\n  border-radius: 3px;\n  border-style: solid;\n  font-family: JejuGothic;\n}\n.button.blue {\n  background-color: #3996D4;\n  border-color: #277bb3;\n}\n.button.blue:hover {\n  background-color: #277bb3;\n}\n.button.blue:active {\n  background-color: #1e5e89;\n}\n.button:focus {\n  outline: none;\n}\n", ""]);
 
 	// exports
 

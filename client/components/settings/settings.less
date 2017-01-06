@@ -1,3 +1,5 @@
+@settings-background-color: #3996D4;
+
 .settings {
   width: 40px;
   height: 40px;
@@ -9,8 +11,8 @@
   cursor: pointer;
   position: relative;
   border-radius: 15px;
-  background-color: #32A8D9;
   transition-duration: 0.5s;
+  background-color: @settings-background-color;
 }
 
 .settings > div:nth-of-type(1):after {
@@ -28,7 +30,7 @@
   border-bottom-color: transparent;
   border-left-width: 12px;
   border-left-style: solid;
-  border-left-color: #32A8D9;
+  border-left-color: @settings-background-color;
 }
 
 .settings > div:nth-of-type(1) > i {
@@ -54,12 +56,12 @@
   height: 300px;
   position: absolute;
   visibility: hidden;
+  background-color: white;
+  transition-duration: 0.5s;
   border-width: 2px;
   border-radius: 5px;
   border-style: solid;
-  border-color: #32A8D9;
-  background-color: white;
-  transition-duration: 0.5s;
+  border-color: @settings-background-color;
 }
 
 .settings.active > div:nth-of-type(1) {

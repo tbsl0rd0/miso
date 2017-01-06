@@ -1,0 +1,31 @@
+@blue: #3996D4;
+
+.button {
+  color: white;
+  height: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  padding-right: 13px;
+  padding-left: 13px;
+  border-width: 1px;
+  border-radius: 3px;
+  border-style: solid;
+  font-family: JejuGothic;
+}
+
+.button.blue {
+  background-color: @blue;
+  border-color: darken(@blue, 10%);
+}
+
+.button.blue:hover {
+  background-color: darken(@blue, 10%);
+}
+
+.button.blue:active {
+  background-color: darken(@blue, 20%);
+}
+
+.button:focus {
+  outline: none;
+}
