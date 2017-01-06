@@ -1,0 +1,92 @@
+@navbar-background-color: #2B3753;
+
+.navbar {
+  height: 40px;
+  margin-top: 10px;
+  background-color: @navbar-background-color;
+}
+
+.navbar > a > img {
+  float: left;
+  margin-left: 20px;
+}
+
+.navbar > ul {
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.navbar > ul:nth-of-type(1) {
+  float: left;
+  margin-left: 20px;
+}
+
+.navbar > ul:nth-of-type(2) {
+  float: right;
+  margin-right: 20px;
+}
+
+.navbar > ul > li {
+  height: 40px;
+  display: inline-block;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: lighten(@navbar-background-color, 10%);
+}
+
+.navbar > ul > li:nth-last-of-type(1) {
+  border-right-width: 0px;
+}
+
+.navbar > ul > li > a {
+  color: #28A1D6;
+  display: block;
+  cursor: pointer;
+  line-height: 40px;
+  padding-right: 10px;
+  padding-left: 10px;
+  text-decoration: none;
+  font-family: koverwatch;
+}
+
+.navbar > ul > li > div {
+  top: -4px;
+  width: 0%;
+  height: 4px;
+  cursor: pointer;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  transition-delay: 0.2s;
+  background-color: #2FF7FF;
+}
+
+.navbar > ul > li:hover > div {
+  width: 100%;
+  animation-duration: 0.2s;
+  animation-name: nav_underscore;
+}
+
+@keyframes nav_underscore {
+  from {
+    width: 50%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.navbar > ul > li.active {
+  background-color: #3996D4;
+}
+
+.navbar > ul > li.active > a {
+  color: white;
+}
+
+.navbar > ul > li.active > div {
+  width: 100%;
+  animation-name: none;
+}
