@@ -1,12 +1,12 @@
-@navbar-background-color: #2B3753;
+@navbar_background_color: #2B3753;
 
 .navbar {
   height: 40px;
   margin-top: 10px;
-  background-color: @navbar-background-color;
+  background-color: @navbar_background_color;
 }
 
-.navbar > a > img {
+.navbar > a {
   float: left;
   margin-left: 20px;
 }
@@ -32,7 +32,7 @@
   display: inline-block;
   border-right-width: 1px;
   border-right-style: solid;
-  border-right-color: lighten(@navbar-background-color, 10%);
+  border-right-color: lighten(@navbar_background_color, 10%);
 }
 
 .navbar > ul > li:nth-last-of-type(1) {

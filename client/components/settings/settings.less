@@ -1,4 +1,4 @@
-@settings-background-color: #3996D4;
+@settings_background_color: #3996D4;
 
 .settings {
   width: 40px;
@@ -12,10 +12,10 @@
   position: relative;
   border-radius: 15px;
   transition-duration: 0.5s;
-  background-color: @settings-background-color;
+  background-color: @settings_background_color;
 }
 
-.settings > div:nth-of-type(1):after {
+.settings > div:nth-of-type(1) > div {
   opacity: 0;
   right: 0px;
   bottom: 5px;
@@ -30,7 +30,7 @@
   border-bottom-color: transparent;
   border-left-width: 12px;
   border-left-style: solid;
-  border-left-color: @settings-background-color;
+  border-left-color: @settings_background_color;
 }
 
 .settings > div:nth-of-type(1) > i {
@@ -52,6 +52,7 @@
 
 .settings > div:nth-of-type(2) {
   opacity: 0;
+  z-index: 999;
   width: 300px;
   height: 300px;
   position: absolute;
@@ -61,7 +62,7 @@
   border-width: 2px;
   border-radius: 5px;
   border-style: solid;
-  border-color: @settings-background-color;
+  border-color: @settings_background_color;
 }
 
 .settings.active > div:nth-of-type(1) {
@@ -69,7 +70,7 @@
   background-color: #9A9C9D;
 }
 
-.settings.active > div:nth-of-type(1):after {
+.settings.active > div:nth-of-type(1) > div {
   opacity: 1;
   right: -7px;
   border-left-color: #9A9C9D;
