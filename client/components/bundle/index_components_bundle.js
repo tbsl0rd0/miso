@@ -48,10 +48,13 @@
 
 	__webpack_require__(7);
 	__webpack_require__(11);
-
 	__webpack_require__(15);
-	__webpack_require__(17);
-	__webpack_require__(21);
+	__webpack_require__(19);
+
+	__webpack_require__(23);
+	__webpack_require__(25);
+	__webpack_require__(27);
+	__webpack_require__(29);
 
 
 /***/ },
@@ -62,12 +65,22 @@
 	var template = __webpack_require__(6);
 
 	angular.module('miso', [
+	  'modal',
 	  'navbar',
+	  'notify',
 	  'settings'
 	])
 	.component('miso', {
 	  template: template,
-	  controller: function() {}
+	  controller: function(modal, notify, $scope) {
+	    $scope.show_modal = function() {
+	      modal.show_modal();
+	    }
+
+	    $scope.notify = function() {
+	      notify.put_notify('미소');
+	    }
+	  }
 	});
 
 
@@ -423,7 +436,7 @@
 /* 6 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=container><div class=row><navbar></navbar></div><div class=row><span class=\"label blue\">미소</span></div><div class=row><settings></settings></div><div class=row><button class=button>미소미소</button> <button class=\"button blue\">미소미소</button></div><div class=row><input type=text placeholder=미소></div></div>"
+	module.exports = "<modal></modal><notify></notify><div class=container><div class=row><navbar></navbar></div><div class=row><span class=\"label blue\">미소</span></div><div class=row><settings></settings></div><div class=row><button class=button>미소미소</button> <button class=\"button blue\">미소미소</button></div><div class=row><ul class=list><li><div class=row>미소</div></li><li><div class=row>미소</div></li><li><div class=row>미소</div></li></ul></div><div class=row><button class=\"button blue\" ng-click=show_modal()>모달</button></div><div class=row><button class=\"button blue\" ng-click=notify()>notify</button></div></div>"
 
 /***/ },
 /* 7 */
@@ -432,10 +445,29 @@
 	__webpack_require__(8);
 	var template = __webpack_require__(10);
 
-	angular.module('navbar', [])
-	.component('navbar', {
+	angular.module('modal', [])
+	.component('modal', {
 	  template: template,
-	  controller: function() {}
+	  controller: function(modal, $scope) {
+	    modal.show_modal = function() {
+	      $scope.active = true;
+	    };
+
+	    modal.hide_modal = function() {
+	      $scope.active = false;
+	    };
+
+	    $scope.cancel = function() {
+	      $scope.active = false;
+	    };
+
+	    $scope.confirm = function() {
+	      $scope.active = false;
+	    };
+	  }
+	})
+	.factory('modal', function() {
+	  return {};
 	});
 
 
@@ -455,8 +487,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./navbar.less", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./navbar.less");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./modal.less", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./modal.less");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -474,7 +506,7 @@
 
 
 	// module
-	exports.push([module.id, ".navbar {\n  height: 40px;\n  margin-top: 10px;\n  background-color: #2B3753;\n}\n.navbar > a {\n  float: left;\n  margin-left: 20px;\n}\n.navbar > ul {\n  padding-left: 0px;\n  margin-top: 0px;\n  margin-bottom: 0px;\n}\n.navbar > ul:nth-of-type(1) {\n  float: left;\n  margin-left: 20px;\n}\n.navbar > ul:nth-of-type(2) {\n  float: right;\n  margin-right: 20px;\n}\n.navbar > ul > li {\n  height: 40px;\n  display: inline-block;\n  border-right-width: 1px;\n  border-right-style: solid;\n  border-right-color: #3c4d75;\n}\n.navbar > ul > li:nth-last-of-type(1) {\n  border-right-width: 0px;\n}\n.navbar > ul > li > a {\n  color: #28A1D6;\n  display: block;\n  cursor: pointer;\n  line-height: 40px;\n  padding-right: 10px;\n  padding-left: 10px;\n  text-decoration: none;\n  font-family: koverwatch;\n}\n.navbar > ul > li > div {\n  top: -4px;\n  width: 0%;\n  height: 4px;\n  cursor: pointer;\n  margin-right: auto;\n  margin-left: auto;\n  position: relative;\n  transition-delay: 0.2s;\n  background-color: #2FF7FF;\n}\n.navbar > ul > li:hover > div {\n  width: 100%;\n  animation-duration: 0.2s;\n  animation-name: nav_underscore;\n}\n@keyframes nav_underscore {\n  from {\n    width: 50%;\n  }\n  to {\n    width: 100%;\n  }\n}\n.navbar > ul > li.active {\n  background-color: #3996D4;\n}\n.navbar > ul > li.active > a {\n  color: white;\n}\n.navbar > ul > li.active > div {\n  width: 100%;\n  animation-name: none;\n}\n", ""]);
+	exports.push([module.id, ".modal {\n  top: 90px;\n  opacity: 0;\n  width: 100%;\n  height: 145px;\n  z-index: 1000;\n  position: absolute;\n  visibility: hidden;\n  transition-duration: 0.2s;\n}\n.modal.active {\n  opacity: 1;\n  top: 100px;\n  visibility: visible;\n}\n.modal > div {\n  opacity: 0.97;\n}\n.modal > div:nth-of-type(1) {\n  height: 90px;\n  background-color: #232F47;\n}\n.modal > div:nth-of-type(2) {\n  height: 55px;\n  background-color: #0D1722;\n}\n.modal > div:nth-of-type(2) > div > span {\n  line-height: 47px;\n}\n", ""]);
 
 	// exports
 
@@ -483,7 +515,7 @@
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = "<nav class=navbar><a href=\"/\"><img src=https://dummyimage.com/150x40/000/fff></a><ul><li><a>미소</a><div></div></li><li class=active><a>미소</a><div></div></li><li><a>미소</a><div></div></li><li><a>미소</a><div></div></li><li><a>미소</a><div></div></li></ul><ul><li><a>미소</a><div></div></li><li><a>미소</a><div></div></li></ul></nav>"
+	module.exports = "<div class=modal ng-class=\"{ 'active': active == true }\"><div>미소</div><div><div class=container style=\"text-align: center;\"><span><button class=\"button blue\" ng-click=cancel()>아니요</button> <button class=\"button blue\" ng-click=confirm()>예</button></span></div></div></div>"
 
 /***/ },
 /* 11 */
@@ -492,8 +524,8 @@
 	__webpack_require__(12);
 	var template = __webpack_require__(14);
 
-	angular.module('settings', [])
-	.component('settings', {
+	angular.module('navbar', [])
+	.component('navbar', {
 	  template: template,
 	  controller: function() {}
 	});
@@ -515,8 +547,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./settings.less", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./settings.less");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./navbar.less", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./navbar.less");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -534,7 +566,7 @@
 
 
 	// module
-	exports.push([module.id, ".settings {\n  width: 40px;\n  height: 40px;\n}\n.settings > div:nth-of-type(1) {\n  width: 30px;\n  height: 30px;\n  cursor: pointer;\n  position: relative;\n  border-radius: 15px;\n  transition-duration: 0.5s;\n  background-color: #3996D4;\n}\n.settings > div:nth-of-type(1) > div {\n  opacity: 0;\n  right: 0px;\n  bottom: 5px;\n  content: '';\n  position: absolute;\n  transition-duration: 0.5s;\n  border-top-width: 10px;\n  border-top-style: solid;\n  border-top-color: transparent;\n  border-bottom-width: 10px;\n  border-bottom-style: solid;\n  border-bottom-color: transparent;\n  border-left-width: 12px;\n  border-left-style: solid;\n  border-left-color: #3996D4;\n}\n.settings > div:nth-of-type(1) > i {\n  color: white;\n  position: absolute;\n  transition-duration: 0.5s;\n}\n.settings > div:nth-of-type(1) > i:nth-of-type(1) {\n  top: 7px;\n  left: 6px;\n}\n.settings > div:nth-of-type(1) > i:nth-of-type(2) {\n  top: 7px;\n  left: 7px;\n  opacity: 0;\n}\n.settings > div:nth-of-type(2) {\n  opacity: 0;\n  z-index: 999;\n  width: 300px;\n  height: 300px;\n  position: absolute;\n  visibility: hidden;\n  background-color: white;\n  transition-duration: 0.5s;\n  border-width: 2px;\n  border-radius: 5px;\n  border-style: solid;\n  border-color: #3996D4;\n}\n.settings.active > div:nth-of-type(1) {\n  transform: rotate(90deg);\n  background-color: #9A9C9D;\n}\n.settings.active > div:nth-of-type(1) > div {\n  opacity: 1;\n  right: -7px;\n  border-left-color: #9A9C9D;\n}\n.settings.active > div:nth-of-type(1) > i:nth-of-type(1) {\n  opacity: 0;\n}\n.settings.active > div:nth-of-type(1) > i:nth-of-type(2) {\n  opacity: 1;\n}\n.settings.active > div:nth-of-type(2) {\n  opacity: 1;\n  margin-top: 10px;\n  margin-left: 5px;\n  visibility: visible;\n}\n", ""]);
+	exports.push([module.id, ".navbar {\n  height: 40px;\n  margin-top: 10px;\n  background-color: #2B3753;\n}\n.navbar > a {\n  float: left;\n  margin-left: 20px;\n}\n.navbar > ul {\n  padding-left: 0px;\n  margin-top: 0px;\n  margin-bottom: 0px;\n}\n.navbar > ul:nth-of-type(1) {\n  float: left;\n  margin-left: 20px;\n}\n.navbar > ul:nth-of-type(2) {\n  float: right;\n  margin-right: 20px;\n}\n.navbar > ul > li {\n  height: 40px;\n  display: inline-block;\n  border-right-width: 1px;\n  border-right-style: solid;\n  border-right-color: #3c4d75;\n}\n.navbar > ul > li:nth-last-of-type(1) {\n  border-right-width: 0px;\n}\n.navbar > ul > li > a {\n  color: #28A1D6;\n  display: block;\n  cursor: pointer;\n  line-height: 40px;\n  padding-right: 10px;\n  padding-left: 10px;\n  text-decoration: none;\n  font-family: koverwatch;\n}\n.navbar > ul > li > div {\n  top: -4px;\n  width: 0%;\n  height: 4px;\n  cursor: pointer;\n  margin-right: auto;\n  margin-left: auto;\n  position: relative;\n  transition-delay: 0.2s;\n  background-color: #2FF7FF;\n}\n.navbar > ul > li:hover > div {\n  width: 100%;\n  animation-duration: 0.2s;\n  animation-name: nav_underscore;\n}\n@keyframes nav_underscore {\n  from {\n    width: 50%;\n  }\n  to {\n    width: 100%;\n  }\n}\n.navbar > ul > li.active {\n  background-color: #3996D4;\n}\n.navbar > ul > li.active > a {\n  color: white;\n}\n.navbar > ul > li.active > div {\n  width: 100%;\n  animation-name: none;\n}\n", ""]);
 
 	// exports
 
@@ -543,16 +575,159 @@
 /* 14 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=settings ng-class=\"{ 'active': active == 1 }\"><div ng-init=\"active = -1\" ng-click=\"active = active * -1\"><i class=\"fa fa-lg fa-cog\"></i> <i class=\"fa fa-lg fa-times\"></i><div></div></div><div></div></div>"
+	module.exports = "<nav class=navbar><a href=\"/\"><img src=https://dummyimage.com/150x40/000/fff></a><ul><li><a>미소</a><div></div></li><li class=active><a>미소</a><div></div></li><li><a>미소</a><div></div></li><li><a>미소</a><div></div></li><li><a>미소</a><div></div></li></ul><ul><li><a>미소</a><div></div></li><li><a>미소</a><div></div></li></ul></nav>"
 
 /***/ },
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
+	__webpack_require__(16);
+	var template = __webpack_require__(18);
+
+	angular.module('notify', [])
+	.component('notify', {
+	  template: template,
+	  controller: function(notify, $scope) {
+	    $scope.notifies = [];
+
+	    notify.put_notify = function(message) {
+	      if ($scope.notifies.length > 4) {
+	        return;
+	      }
+
+	      $scope.notifies.unshift(message);
+
+	      setTimeout(function() {
+	        if ($scope.notifies.length == 0) {
+	          return;
+	        }
+
+	        $scope.notifies.pop();
+
+	        $scope.$apply();
+	      }, 4000);
+	    };
+	  }
+	})
+	.factory('notify', function() {
+	  return {};
+	});
+
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(16);
+	var content = __webpack_require__(17);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./notify.less", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./notify.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".notify {\n  top: 200px;\n  right: 0px;\n  z-index: 1001;\n  padding-left: 0px;\n  position: absolute;\n}\n.notify > li {\n  list-style: none;\n  margin-top: 10px;\n}\n.notify > li > div {\n  width: 360px;\n  height: 70px;\n}\n.notify > li > div > div {\n  float: left;\n  opacity: 0.97;\n}\n.notify > li > div > div:nth-of-type(1) {\n  width: 65px;\n  height: 70px;\n  color: #525E79;\n  text-align: center;\n  background-color: #FFC331;\n}\n.notify > li > div > div:nth-of-type(2) {\n  width: 295px;\n  height: 70px;\n  color: #F6F9FB;\n  padding-top: 20px;\n  padding-right: 15px;\n  padding-left: 15px;\n  box-sizing: border-box;\n  font-size: 14px;\n  font-family: JejuGothic;\n  background-color: #525E79;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	module.exports = "<ul class=notify><li ng-repeat=\"notify in notifies track by $index\"><div><div><i class=\"fa fa-3x fa-exclamation-circle\" style=\"margin-top: 11px;\"></i></div><div>{{ notify }}</div></div></li></ul>"
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(20);
+	var template = __webpack_require__(22);
+
+	angular.module('settings', [])
+	.component('settings', {
+	  template: template,
+	  controller: function() {}
+	});
+
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(21);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./settings.less", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./settings.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".settings {\n  width: 40px;\n  height: 40px;\n}\n.settings > div:nth-of-type(1) {\n  width: 30px;\n  height: 30px;\n  cursor: pointer;\n  position: relative;\n  border-radius: 15px;\n  transition-duration: 0.5s;\n  background-color: #3996D4;\n}\n.settings > div:nth-of-type(1) > div {\n  opacity: 0;\n  right: 0px;\n  bottom: 5px;\n  content: '';\n  position: absolute;\n  transition-duration: 0.5s;\n  border-top-width: 10px;\n  border-top-style: solid;\n  border-top-color: transparent;\n  border-bottom-width: 10px;\n  border-bottom-style: solid;\n  border-bottom-color: transparent;\n  border-left-width: 12px;\n  border-left-style: solid;\n  border-left-color: #3996D4;\n}\n.settings > div:nth-of-type(1) > i {\n  color: white;\n  position: absolute;\n  transition-duration: 0.5s;\n}\n.settings > div:nth-of-type(1) > i:nth-of-type(1) {\n  top: 7px;\n  left: 6px;\n}\n.settings > div:nth-of-type(1) > i:nth-of-type(2) {\n  top: 7px;\n  left: 7px;\n  opacity: 0;\n}\n.settings > div:nth-of-type(2) {\n  opacity: 0;\n  z-index: 999;\n  width: 300px;\n  height: 300px;\n  position: absolute;\n  visibility: hidden;\n  background-color: white;\n  transition-duration: 0.5s;\n  border-width: 2px;\n  border-radius: 5px;\n  border-style: solid;\n  border-color: #3996D4;\n}\n.settings.active > div:nth-of-type(1) {\n  transform: rotate(90deg);\n  background-color: #9A9C9D;\n}\n.settings.active > div:nth-of-type(1) > div {\n  opacity: 1;\n  right: -7px;\n  border-left-color: #9A9C9D;\n}\n.settings.active > div:nth-of-type(1) > i:nth-of-type(1) {\n  opacity: 0;\n}\n.settings.active > div:nth-of-type(1) > i:nth-of-type(2) {\n  opacity: 1;\n}\n.settings.active > div:nth-of-type(2) {\n  opacity: 1;\n  margin-top: 10px;\n  margin-left: 5px;\n  visibility: visible;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 22 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=settings ng-class=\"{ 'active': active == 1 }\"><div ng-init=\"active = -1\" ng-click=\"active = active * -1\"><i class=\"fa fa-lg fa-cog\"></i> <i class=\"fa fa-lg fa-times\"></i><div></div></div><div>미소</div></div>"
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(24);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -572,7 +747,7 @@
 	}
 
 /***/ },
-/* 16 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -586,13 +761,53 @@
 
 
 /***/ },
-/* 17 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(18);
+	var content = __webpack_require__(26);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./list.less", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./list.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".list {\n  margin-top: 0px;\n  padding-left: 0px;\n}\n.list > li {\n  cursor: pointer;\n  list-style: none;\n  padding-top: 2px;\n  padding-bottom: 2px;\n  border-bottom-width: 1px;\n  border-bottom-style: solid;\n  border-bottom-color: #cdcdcd;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(28);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -612,7 +827,7 @@
 	}
 
 /***/ },
-/* 18 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -626,15 +841,13 @@
 
 
 /***/ },
-/* 19 */,
-/* 20 */,
-/* 21 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(22);
+	var content = __webpack_require__(30);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -654,7 +867,7 @@
 	}
 
 /***/ },
-/* 22 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
